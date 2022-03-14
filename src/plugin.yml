@@ -1,0 +1,11 @@
+name: YahhicultyImpossible
+description: Special Difficulty for Yahiamice by FilipeeX
+version: 69.420
+main: filipeex.yahhicultyimpossible.YahhicultyImpossible
+author: FilipeeX
+
+commands:
+  yahhiculty:
+    usage: /<command>
+    description: Main Command of Yahhiculty Plugin
+    aliases: [y, yh, yi, yhi, yhcullty, yimpossible, yhimpossible, yhimp]
