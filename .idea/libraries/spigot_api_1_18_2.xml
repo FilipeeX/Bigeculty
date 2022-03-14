@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="spigot-api-1.18.2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../Spigot Cores/spigot-api-1.18.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
