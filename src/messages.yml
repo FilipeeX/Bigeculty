@@ -1,0 +1,20 @@
+# Variables you can use here:
+# - %prefix% - is replaced with prefix,
+# - %file% - is replaced with file if there is any in the message,
+
+
+# Prefix is displayed before every single one message this plugin contains.
+# For example; '[Bigeculty] This thing is not working!'
+prefix: "&8[&cBigeculty&8]"
+
+# There are just all the messages of this plugin.
+# You can change them however you'd like, just make sure to use correct placeholders.
+plugin-enabled: "%prefix% &aPlugin has been enabled!"
+plugin-disabled: "%prefix% &cPlugin has been disabled!"
+disabled-config: "%prefix% &fPlugin has been disabled becaused it configured like this in config.yml! You can either rewrite the file or use command /bigeculty enable!"
+unable-to-save: "%prefix% &fUnable to save this configuration file: &c%file%&f!"
+u-enabled-plugin: "%prefix% &aYou successfuly enabled this difficulty!"
+u-disabled-plugin: "%prefix% &cYou successfuly disabled this difficulty!"
+invalid-argument: "%prefix% &fInvalid &ccommand argument&f! Try; &b/b help&f!"
+invalid-arguments: "%prefix% &fInvalid &ccommand arguments&f! Try; &b/b help&f!"
+invalid-event: "%prefix% &fInvalid &cevent&f! Use &b/b changes&f to get a event list!"

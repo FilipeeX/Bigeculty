@@ -1,0 +1,5 @@
+# This determents if this plugin will be enabled. You can influence this by using /bigeculty <enable/disable>.
+enabled: true
+
+# Prefix is displayed before every message of this plugin.
+prefix: "&8[&cBigeculty&8]"
