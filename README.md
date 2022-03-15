@@ -8,6 +8,9 @@ You wanna go to **releases**, download _bigeculty.jar_ build or download the lat
 Once you have the file downloaded, you wanna put it into your plugins folder in your server.
 Then just **restart the server** & you should be good to go!
 
+## Fully Customizable
+You can change literally everything here. From chances & values to every single message that plugin contains.
+
 ## What is Currently Changed?
 For starters, there's a lot. And because this plugin changes so many thing, i created a command you can use to see them all.
 The command is; **/bgeculty changes**.
