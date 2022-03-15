@@ -21,7 +21,7 @@ import java.util.List;
 
 public class MainCmd implements TabExecutor {
 
-    private String[] argumentArray = {"enable", "disable", "help", "changes", "manuelevent"};
+    private String[] argumentArray = {"enable", "disable", "help", "changes", "manualevent"};
     private List<String> arguments = new ArrayList<String>(Arrays.asList(argumentArray));
 
     private String[] eventArray = {"explosion", "vex", "launch"};
@@ -138,7 +138,7 @@ public class MainCmd implements TabExecutor {
                 for (Player onlinePlayer : Bukkit.getServer().getOnlinePlayers()) {
                     suggestions.add(onlinePlayer.getName());
                 }
-                return ArgumentTabCompleter.getCompletions(suggestions, args[1]);
+                return ArgumentTabCompleter.getCompletions(suggestions, args[2]);
             }
         }
 

@@ -12,8 +12,8 @@ public class Bigeculty extends JavaPlugin {
     // This Will Be Called Every Time This Plugin is Started
     @Override
     public void onEnable() {
-        getCommand("yahhiculty").setExecutor(new MainCmd());
-        getCommand("yahhiculty").setExecutor(new MainCmd());
+        getCommand("bigeculty").setExecutor(new MainCmd());
+        getCommand("bigeculty").setExecutor(new MainCmd());
 
         PluginManager pm = getServer().getPluginManager();
         pm.registerEvents(new MoveListener(), this);

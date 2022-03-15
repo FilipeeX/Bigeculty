@@ -1,11 +1,11 @@
-name: YahhicultyImpossible
-description: Special Difficulty for Yahiamice by FilipeeX
-version: 69.420
-main: filipeex.yahhicultyimpossible.YahhicultyImpossible
+name: Bigeculty
+description: Special Impossible Difficulty for Bige by FilipeeX
+version: 420.69
+main: filipeex.bigeculty.Bigeculty
 author: FilipeeX
 
 commands:
-  yahhiculty:
+  bigeculty:
     usage: /<command>
-    description: Main Command of Yahhiculty Plugin
-    aliases: [y, yh, yi, yhi, yhcullty, yimpossible, yhimpossible, yhimp]
+    description: Main Command of Bigeculty Plugin
+    aliases: [b, bc, bd, bg, bgculty, bculty, bgdiffimpossible, bgdiff]

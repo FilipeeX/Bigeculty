@@ -17,9 +17,7 @@ public class MoveListener implements Listener {
     public void move(PlayerMoveEvent e) {
         Random r = new Random();
         if (r.nextInt(999) == r.nextInt(999)) {
-            for (int i = 0; i < 100; i++) {
-                e.getPlayer().getWorld().spawnEntity(e.getPlayer().getLocation(), EntityType.PRIMED_TNT);
-            }
+            e.getPlayer().getWorld().spawnEntity(e.getPlayer().getLocation(), EntityType.PRIMED_TNT);
             e.getPlayer().sendTitle(Chat.c("&c&lBOOM"), "Not as easy as it seems :)", 20, 20, 20);
         }
 
