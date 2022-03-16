@@ -8,16 +8,12 @@ import filipeex.bigeculty.classes.ArgumentTabCompleter;
 import filipeex.bigeculty.classes.Chat;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Vex;
-import org.bukkit.util.StringUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class MainCmd implements TabExecutor {
@@ -36,11 +32,11 @@ public class MainCmd implements TabExecutor {
             if (args.length == 1) {
                 if (args[0].equalsIgnoreCase("enable")) {
                     Bigeculty.i.enable();
-                    Bukkit.getConsoleSender().sendMessage(Chat.c(Bigeculty.messageConfig.getString("u-enabled-plugin".replace("%prefix%", Bigeculty.prefix))));
+                    p.sendMessage(Chat.c(Bigeculty.messageConfig.getString("u-enabled-plugin").replace("%prefix%", Bigeculty.prefix)));
                 }
                 else if (args[0].equalsIgnoreCase("disable")) {
                     Bigeculty.i.disable();
-                    Bukkit.getConsoleSender().sendMessage(Chat.c(Bigeculty.messageConfig.getString("u-disabled-plugin".replace("%prefix%", Bigeculty.prefix))));
+                    p.sendMessage(Chat.c(Bigeculty.messageConfig.getString("u-disabled-plugin").replace("%prefix%", Bigeculty.prefix)));
                 }
                 else if (args[0].equalsIgnoreCase("help")) {
                     p.sendMessage(Chat.c("&8(§)&m---------------------------------------------&r&8(§)"));
@@ -65,7 +61,7 @@ public class MainCmd implements TabExecutor {
                     p.sendMessage(Chat.c("&8(§)&m---------------------------------------------&r&8(§)"));
                 }
                 else {
-                    p.sendMessage(Chat.c(Bigeculty.messageConfig.getString("invalid-argument").replace("%prefix%", Bigeculty.prefix)));
+                    p.sendMessage(Chat.c(Bigeculty.messageConfig.getString("invalid-argument")).replace("%prefix%", Bigeculty.prefix));
                 }
             } else if (args.length == 2) {
                 if (args[0].equalsIgnoreCase("manualevent")) {
@@ -77,11 +73,11 @@ public class MainCmd implements TabExecutor {
                     } else if (args[1].equalsIgnoreCase("launch")) {
                         WaterLaunch.launch(p);
                     } else {
-                        p.sendMessage(Chat.c(Bigeculty.messageConfig.getString("invalid-event".replace("%prefix%", Bigeculty.prefix))));
+                        p.sendMessage(Chat.c(Bigeculty.messageConfig.getString("invalid-event").replace("%prefix%", Bigeculty.prefix)));
                     }
 
                 } else {
-                    p.sendMessage(Chat.c(Bigeculty.messageConfig.getString("invalid-arguments".replace("%prefix%", Bigeculty.prefix))));
+                    p.sendMessage(Chat.c(Bigeculty.messageConfig.getString("invalid-arguments").replace("%prefix%", Bigeculty.prefix)));
                 }
             } else if (args.length == 3) {
                 if (args[0].equalsIgnoreCase("manualevent")) {
@@ -90,25 +86,25 @@ public class MainCmd implements TabExecutor {
                     if (target != null) {
                         if (args[1].equalsIgnoreCase("explosion")) {
                             MoveExplosion.explode(target);
-                            target.sendMessage(Chat.c(Bigeculty.messageConfig.getString("explosion-target-message".replace("%prefix%", Bigeculty.prefix).replace("%player%", p.getName()))));
-                            p.sendMessage(Chat.c(Bigeculty.messageConfig.getString("explosion-player-message".replace("%prefix%", Bigeculty.prefix).replace("%player%", target.getName()))));
+                            target.sendMessage(Chat.c(Bigeculty.messageConfig.getString("explosion-target-message").replace("%prefix%", Bigeculty.prefix).replace("%player%", p.getName())));
+                            p.sendMessage(Chat.c(Bigeculty.messageConfig.getString("explosion-player-message").replace("%prefix%", Bigeculty.prefix).replace("%player%", target.getName())));
                         } else if (args[1].equalsIgnoreCase("vex")) {
                             VexSpawn.spawnVex(target, target.getLocation());
-                            target.sendMessage(Chat.c(Bigeculty.messageConfig.getString("vex-target-message".replace("%prefix%", Bigeculty.prefix).replace("%player%", p.getName()))));
-                            p.sendMessage(Chat.c(Bigeculty.messageConfig.getString("vex-target-message".replace("%prefix%", Bigeculty.prefix).replace("%player%", target.getName()))));
+                            target.sendMessage(Chat.c(Bigeculty.messageConfig.getString("vex-target-message").replace("%prefix%", Bigeculty.prefix).replace("%player%", p.getName())));
+                            p.sendMessage(Chat.c(Bigeculty.messageConfig.getString("vex-player-message").replace("%prefix%", Bigeculty.prefix).replace("%player%", target.getName())));
                         } else if (args[1].equalsIgnoreCase("launch")) {
                             WaterLaunch.launch(target);
-                            target.sendMessage(Chat.c(Bigeculty.messageConfig.getString("launch-target-message".replace("%prefix%", Bigeculty.prefix).replace("%player%", p.getName()))));
-                            p.sendMessage(Chat.c(Bigeculty.messageConfig.getString("launch-target-message".replace("%prefix%", Bigeculty.prefix).replace("%player%", target.getName()))));
+                            target.sendMessage(Chat.c(Bigeculty.messageConfig.getString("launch-target-message").replace("%prefix%", Bigeculty.prefix).replace("%player%", p.getName())));
+                            p.sendMessage(Chat.c(Bigeculty.messageConfig.getString("launch-player-message").replace("%prefix%", Bigeculty.prefix).replace("%player%", target.getName())));
                         } else {
                             p.sendMessage(Chat.c(Bigeculty.messageConfig.getString("invalid-event").replace("%prefix%", Bigeculty.prefix)));
                         }
                     } else {
-                        p.sendMessage(Chat.c(Bigeculty.messageConfig.getString("player-not-found".replace("%prefix%", Bigeculty.prefix).replace("%player%", target.getName()))));
+                        p.sendMessage(Chat.c(Bigeculty.messageConfig.getString("player-not-found").replace("%prefix%", Bigeculty.prefix).replace("%player%", args[2])));
                     }
 
                 } else {
-                    p.sendMessage(Chat.c(Bigeculty.messageConfig.getString("invalid-arguments").replace("%prefix%", Bigeculty.prefix)));
+                    p.sendMessage(Chat.c(Bigeculty.messageConfig.getString("invalid-arguments")).replace("%prefix%", Bigeculty.prefix));
                 }
             } else if (args.length == 0) {
                 p.sendMessage(Chat.c("&8(§)&m---------------------------------------------&r&8(§)"));
@@ -123,7 +119,7 @@ public class MainCmd implements TabExecutor {
                 p.sendMessage(Chat.c("&r"));
                 p.sendMessage(Chat.c("&8(§)&m---------------------------------------------&r&8(§)"));
             } else {
-                p.sendMessage(Chat.c(Bigeculty.messageConfig.getString("invalid-arguments").replace("%prefix%", Bigeculty.prefix)));
+                p.sendMessage(Chat.c(Bigeculty.messageConfig.getString("invalid-arguments")).replace("%prefix%", Bigeculty.prefix));
             }
 
         }
@@ -134,27 +130,16 @@ public class MainCmd implements TabExecutor {
     public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {
 
         if (args.length == 1) {
-            List<String> suggestions = new ArrayList<String>();
-            for (String s : arguments) {
-                suggestions.add(s);
-            }
+            List<String> suggestions = new ArrayList<String>(arguments);
             return ArgumentTabCompleter.getCompletions(suggestions, args[0]);
         }
         if (args.length == 2) {
             if (args[0].equalsIgnoreCase("manualevent")) {
-                List<String> suggestions = new ArrayList<String>();
-                for (String s : events) {
-                    suggestions.add(s);
-                }
+                List<String> suggestions = new ArrayList<String>(events);
                 return ArgumentTabCompleter.getCompletions(suggestions, args[1]);
             } else if (args[0].equalsIgnoreCase("help")) {
-                List<String> suggestions = new ArrayList<String>();
-                for (String s : arguments) {
-                    suggestions.add(s);
-                }
-                for (String s : events) {
-                    suggestions.add(s);
-                }
+                List<String> suggestions = new ArrayList<String>(arguments);
+                suggestions.addAll(events);
                 return ArgumentTabCompleter.getCompletions(suggestions, args[1]);
             } else {
                 List<String> suggestions = new ArrayList<String>();

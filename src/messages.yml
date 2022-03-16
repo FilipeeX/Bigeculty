@@ -1,10 +1,11 @@
 # Variables you can use here:
 # - %prefix% - is replaced with prefix,
 # - %file% - is replaced with file if there is any in the message,
+# - %player% - is replaced with player if there is any releated to the message.
 
 
 # Prefix is displayed before every single one message this plugin contains.
-# For example; '[Bigeculty] This thing is not working!'
+# For example; '[Bigeculty] This thing is not working!'.
 prefix: "&8[&cBigeculty&8]"
 
 # There are just all the messages of this plugin.
@@ -20,9 +21,18 @@ invalid-arguments: "%prefix% &fInvalid &ccommand arguments&f! Try; &b/b help&f!"
 invalid-event: "%prefix% &fInvalid &cevent&f! Use &b/b changes&f to get a event list!"
 player-not-found: "%prefix% &fPlayer &c%player% &fnot found!"
 
+# Manual Event Messages
 explosion-target-message: "%prefix% &fPlayer &c%player%&f spawned a tnt next to u using manual event command!"
 explosion-player-message: "%prefix% &fPlayer &a%player%&f got a tnt on him, cuz why not!"
 vex-target-message: "%prefix% &fPlayer &c%player%&f spawned a vex on u using manual event command!"
 vex-player-message: "%prefix% &fPlayer &a%player%&f got a vex, cuz why not!"
 launch-target-message: "%prefix% &fPlayer &c%player%&f launched u into the sky using manual event command!"
 launch-player-message: "%prefix% &fPlayer &a%player%&f was launched into the sky, cuz he cant swim!"
+
+# Event Title Messages
+explosion-title: ""
+explosion-subtitle: "&f&lM&c&lT&f&lO&c&lN&f&lV&c&lT&f&lE"
+vex-title: ""
+vex-subtitle: "&b&lBLOCKY VEX"
+launch-title: ""
+launch-subtitle: "&9&lYOU CANT SWIM"
