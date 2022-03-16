@@ -90,30 +90,40 @@ public class MainCmd implements TabExecutor {
                     if (target != null) {
                         if (args[1].equalsIgnoreCase("explosion")) {
                             MoveExplosion.explode(target);
-                            target.sendMessage(Bigeculty.prefix + Chat.c("&fPlayer &c%p%&f spawned a tnt next to u using manual event command!".replace("%p%", p.getName())));
-                            p.sendMessage(Bigeculty.prefix + Chat.c("&fPlayer &a%p%&f got a tnt on him, cuz why not!".replace("%p%", target.getName())));
+                            target.sendMessage(Chat.c(Bigeculty.messageConfig.getString("explosion-target-message".replace("%prefix%", Bigeculty.prefix).replace("%player%", p.getName()))));
+                            p.sendMessage(Chat.c(Bigeculty.messageConfig.getString("explosion-player-message".replace("%prefix%", Bigeculty.prefix).replace("%player%", target.getName()))));
                         } else if (args[1].equalsIgnoreCase("vex")) {
                             VexSpawn.spawnVex(target, target.getLocation());
-                            target.sendMessage(Bigeculty.prefix + Chat.c("&fPlayer &c%p%&f spawned a vex on u using manual event command!".replace("%p%", p.getName())));
-                            p.sendMessage(Bigeculty.prefix + Chat.c("&fPlayer &a%p%&f got a vex, cuz why not!".replace("%p%", target.getName())));
+                            target.sendMessage(Chat.c(Bigeculty.messageConfig.getString("vex-target-message".replace("%prefix%", Bigeculty.prefix).replace("%player%", p.getName()))));
+                            p.sendMessage(Chat.c(Bigeculty.messageConfig.getString("vex-target-message".replace("%prefix%", Bigeculty.prefix).replace("%player%", target.getName()))));
                         } else if (args[1].equalsIgnoreCase("launch")) {
                             WaterLaunch.launch(target);
-                            target.sendMessage(Bigeculty.prefix + Chat.c("&fPlayer &c%p%&f launched u into the sky using manual event command!".replace("%p%", p.getName())));
-                            p.sendMessage(Bigeculty.prefix + Chat.c("&fPlayer &a%p%&f was launched into the sky, cuz he cant swim!".replace("%p%", target.getName())));
+                            target.sendMessage(Chat.c(Bigeculty.messageConfig.getString("launch-target-message".replace("%prefix%", Bigeculty.prefix).replace("%player%", p.getName()))));
+                            p.sendMessage(Chat.c(Bigeculty.messageConfig.getString("launch-target-message".replace("%prefix%", Bigeculty.prefix).replace("%player%", target.getName()))));
                         } else {
-                            p.sendMessage(Bigeculty.prefix + Chat.c("&cInvalid Event! &rTry &b/bigeculty manualevent list&r!"));
+                            p.sendMessage(Chat.c(Bigeculty.messageConfig.getString("invalid-event").replace("%prefix%", Bigeculty.prefix)));
                         }
                     } else {
-                        p.sendMessage(Bigeculty.prefix + Chat.c("&fPlayer &c%p%&f Not Fount!".replace("%p%", target.getName())));
+                        p.sendMessage(Chat.c(Bigeculty.messageConfig.getString("player-not-found".replace("%prefix%", Bigeculty.prefix).replace("%player%", target.getName()))));
                     }
 
                 } else {
-                    p.sendMessage(Bigeculty.prefix + Chat.c("&cInvalid Command Arguments! &rTry &b/bigeculty help&r!"));
+                    p.sendMessage(Chat.c(Bigeculty.messageConfig.getString("invalid-arguments").replace("%prefix%", Bigeculty.prefix)));
                 }
             } else if (args.length == 0) {
-                // display chat help message
+                p.sendMessage(Chat.c("&8(§)&m---------------------------------------------&r&8(§)"));
+                p.sendMessage(Chat.c("&r"));
+                p.sendMessage(Chat.c("&r        &c&lBigeculty"));
+                p.sendMessage(Chat.c("&r"));
+                p.sendMessage(Chat.c("&r        &f/b enable&7 - Enables Difficulty"));
+                p.sendMessage(Chat.c("&r        &f/b disable&7 - Disables Difficulty"));
+                p.sendMessage(Chat.c("&r        &f/b help&7 - Displays This Help"));
+                p.sendMessage(Chat.c("&r        &f/b manualevent <event> [player]"));
+                p.sendMessage(Chat.c("&r        &g/b changes&7 - Displays List of Changes"));
+                p.sendMessage(Chat.c("&r"));
+                p.sendMessage(Chat.c("&8(§)&m---------------------------------------------&r&8(§)"));
             } else {
-                p.sendMessage(Bigeculty.prefix + Chat.c("&cInvalid Command Arguments! &rTry &b/bigeculty help&r!"));
+                p.sendMessage(Chat.c(Bigeculty.messageConfig.getString("invalid-arguments").replace("%prefix%", Bigeculty.prefix)));
             }
 
         }
