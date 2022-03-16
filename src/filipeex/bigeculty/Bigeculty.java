@@ -12,8 +12,11 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import javax.xml.stream.events.Characters;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.Charset;
 
 public class Bigeculty extends JavaPlugin {
 
@@ -72,6 +75,15 @@ public class Bigeculty extends JavaPlugin {
 
     public static boolean isRunning() {
         return config.getBoolean("enabled");
+    }
+
+    public void reload() {
+        reloadConfig(); config = getConfig();
+        messageConfig = YamlConfiguration.loadConfiguration(messageConfigFile);
+
+        String message = Chat.c(messageConfig.getString("plugin-reloaded"))
+                .replace("%prefix%", prefix);
+        Bukkit.getConsoleSender().sendMessage(message);
     }
 
     private void createMessagesConfig() {

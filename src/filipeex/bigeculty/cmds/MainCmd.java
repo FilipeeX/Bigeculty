@@ -18,7 +18,7 @@ import java.util.List;
 
 public class MainCmd implements TabExecutor {
 
-    private String[] argumentArray = {"enable", "disable", "help", "changes", "manualevent"};
+    private String[] argumentArray = {"enable", "disable", "help", "changes", "manualevent", "reload"};
     private List<String> arguments = new ArrayList<String>(Arrays.asList(argumentArray));
 
     private String[] eventArray = {"explosion", "vex", "launch"};
@@ -59,8 +59,13 @@ public class MainCmd implements TabExecutor {
                     p.sendMessage(Chat.c("&r        &fLaunch&7 - You Cant Swim & Dont Like Water"));
                     p.sendMessage(Chat.c("&r"));
                     p.sendMessage(Chat.c("&8(§)&m---------------------------------------------&r&8(§)"));
-                }
-                else {
+                } else if (args[0].equalsIgnoreCase("reload")) {
+                    Bigeculty.i.reload();
+                    String message = Chat.c(Bigeculty.messageConfig.getString("plugin-reloaded")
+                    .replace("%player%", p.getName())
+                    .replace("%prefix%", Bigeculty.prefix));
+                    p.sendMessage(message);
+                } else {
                     p.sendMessage(Chat.c(Bigeculty.messageConfig.getString("invalid-argument")).replace("%prefix%", Bigeculty.prefix));
                 }
             } else if (args.length == 2) {
@@ -136,10 +141,6 @@ public class MainCmd implements TabExecutor {
         if (args.length == 2) {
             if (args[0].equalsIgnoreCase("manualevent")) {
                 List<String> suggestions = new ArrayList<String>(events);
-                return ArgumentTabCompleter.getCompletions(suggestions, args[1]);
-            } else if (args[0].equalsIgnoreCase("help")) {
-                List<String> suggestions = new ArrayList<String>(arguments);
-                suggestions.addAll(events);
                 return ArgumentTabCompleter.getCompletions(suggestions, args[1]);
             } else {
                 List<String> suggestions = new ArrayList<String>();

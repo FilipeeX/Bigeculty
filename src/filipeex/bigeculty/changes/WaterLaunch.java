@@ -9,7 +9,7 @@ public class WaterLaunch {
 
     public static void launch(Player p) {
         Vector v = new Vector();
-        v.setY(100);
+        v.setY(25);
         p.setVelocity(v);
 
         String title = Chat.c(Bigeculty.messageConfig.getString("launch-title")
