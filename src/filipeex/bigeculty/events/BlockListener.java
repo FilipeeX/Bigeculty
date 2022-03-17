@@ -1,5 +1,6 @@
 package filipeex.bigeculty.events;
 
+import filipeex.bigeculty.Bigeculty;
 import filipeex.bigeculty.changes.VexSpawn;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -13,17 +14,21 @@ public class BlockListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void blockBreak(BlockBreakEvent e) {
-        Random r = new Random();
-        if (r.nextInt(49) == r.nextInt(49)) {
-            VexSpawn.spawnVex(e.getPlayer(), e.getBlock().getLocation());
+        if (Bigeculty.isRunning()) {
+            Random r = new Random();
+            if (r.nextInt(49) == r.nextInt(49)) {
+                VexSpawn.spawnVex(e.getPlayer(), e.getBlock().getLocation());
+            }
         }
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void blockPlace(BlockPlaceEvent e) {
-        Random r = new Random();
-        if (r.nextInt(49) == r.nextInt(49)) {
-            VexSpawn.spawnVex(e.getPlayer(), e.getBlock().getLocation());
+        if (Bigeculty.isRunning()) {
+            Random r = new Random();
+            if (r.nextInt(49) == r.nextInt(49)) {
+                VexSpawn.spawnVex(e.getPlayer(), e.getBlock().getLocation());
+            }
         }
     }
 

@@ -31,12 +31,26 @@ public class MainCmd implements TabExecutor {
 
             if (args.length == 1) {
                 if (args[0].equalsIgnoreCase("enable")) {
-                    Bigeculty.i.enable();
-                    p.sendMessage(Chat.c(Bigeculty.messageConfig.getString("u-enabled-plugin").replace("%prefix%", Bigeculty.prefix)));
+                    if (!Bigeculty.isRunning()) {
+                        Bigeculty.i.enable();
+                        p.sendMessage(Chat.c(Bigeculty.messageConfig.getString("u-enabled-plugin").replace("%prefix%", Bigeculty.prefix)));
+                    } else {
+                        String message = Chat.c(Bigeculty.messageConfig.getString("already-enabled")
+                                .replace("%prefix%", Bigeculty.prefix)
+                                .replace("%player%", p.getName()));
+                        p.sendMessage(message);
+                    }
                 }
                 else if (args[0].equalsIgnoreCase("disable")) {
-                    Bigeculty.i.disable();
-                    p.sendMessage(Chat.c(Bigeculty.messageConfig.getString("u-disabled-plugin").replace("%prefix%", Bigeculty.prefix)));
+                    if (Bigeculty.isRunning()) {
+                        Bigeculty.i.disable();
+                        p.sendMessage(Chat.c(Bigeculty.messageConfig.getString("u-disabled-plugin").replace("%prefix%", Bigeculty.prefix)));
+                    } else {
+                        String message = Chat.c(Bigeculty.messageConfig.getString("already-disabled")
+                                .replace("%prefix%", Bigeculty.prefix)
+                                .replace("%player%", p.getName()));
+                        p.sendMessage(message);
+                    }
                 }
                 else if (args[0].equalsIgnoreCase("help")) {
                     p.sendMessage(Chat.c("&8(§)&m---------------------------------------------&r&8(§)"));
@@ -71,14 +85,24 @@ public class MainCmd implements TabExecutor {
             } else if (args.length == 2) {
                 if (args[0].equalsIgnoreCase("manualevent")) {
 
-                    if (args[1].equalsIgnoreCase("explosion")) {
-                        MoveExplosion.explode(p);
-                    } else if (args[1].equalsIgnoreCase("vex")) {
-                        VexSpawn.spawnVex(p, p.getLocation());
-                    } else if (args[1].equalsIgnoreCase("launch")) {
-                        WaterLaunch.launch(p);
+                    if (Bigeculty.isRunning()) {
+
+                        if (args[1].equalsIgnoreCase("explosion")) {
+                            MoveExplosion.explode(p);
+                        } else if (args[1].equalsIgnoreCase("vex")) {
+                            VexSpawn.spawnVex(p, p.getLocation());
+                        } else if (args[1].equalsIgnoreCase("launch")) {
+                            WaterLaunch.launch(p);
+
+                        } else {
+                            p.sendMessage(Chat.c(Bigeculty.messageConfig.getString("invalid-event").replace("%prefix%", Bigeculty.prefix)));
+                        }
+
                     } else {
-                        p.sendMessage(Chat.c(Bigeculty.messageConfig.getString("invalid-event").replace("%prefix%", Bigeculty.prefix)));
+                        String message = Chat.c(Bigeculty.messageConfig.getString("function-unavailable")
+                                .replace("%prefix%", Bigeculty.prefix)
+                                .replace("%player%", Bigeculty.prefix));
+                        p.sendMessage(message);
                     }
 
                 } else {
@@ -87,25 +111,34 @@ public class MainCmd implements TabExecutor {
             } else if (args.length == 3) {
                 if (args[0].equalsIgnoreCase("manualevent")) {
 
-                    Player target = Bukkit.getServer().getPlayer(args[2]);
-                    if (target != null) {
-                        if (args[1].equalsIgnoreCase("explosion")) {
-                            MoveExplosion.explode(target);
-                            target.sendMessage(Chat.c(Bigeculty.messageConfig.getString("explosion-target-message").replace("%prefix%", Bigeculty.prefix).replace("%player%", p.getName())));
-                            p.sendMessage(Chat.c(Bigeculty.messageConfig.getString("explosion-player-message").replace("%prefix%", Bigeculty.prefix).replace("%player%", target.getName())));
-                        } else if (args[1].equalsIgnoreCase("vex")) {
-                            VexSpawn.spawnVex(target, target.getLocation());
-                            target.sendMessage(Chat.c(Bigeculty.messageConfig.getString("vex-target-message").replace("%prefix%", Bigeculty.prefix).replace("%player%", p.getName())));
-                            p.sendMessage(Chat.c(Bigeculty.messageConfig.getString("vex-player-message").replace("%prefix%", Bigeculty.prefix).replace("%player%", target.getName())));
-                        } else if (args[1].equalsIgnoreCase("launch")) {
-                            WaterLaunch.launch(target);
-                            target.sendMessage(Chat.c(Bigeculty.messageConfig.getString("launch-target-message").replace("%prefix%", Bigeculty.prefix).replace("%player%", p.getName())));
-                            p.sendMessage(Chat.c(Bigeculty.messageConfig.getString("launch-player-message").replace("%prefix%", Bigeculty.prefix).replace("%player%", target.getName())));
+                    if (Bigeculty.isRunning()) {
+
+                        Player target = Bukkit.getServer().getPlayer(args[2]);
+                        if (target != null) {
+                            if (args[1].equalsIgnoreCase("explosion")) {
+                                MoveExplosion.explode(target);
+                                target.sendMessage(Chat.c(Bigeculty.messageConfig.getString("explosion-target-message").replace("%prefix%", Bigeculty.prefix).replace("%player%", p.getName())));
+                                p.sendMessage(Chat.c(Bigeculty.messageConfig.getString("explosion-player-message").replace("%prefix%", Bigeculty.prefix).replace("%player%", target.getName())));
+                            } else if (args[1].equalsIgnoreCase("vex")) {
+                                VexSpawn.spawnVex(target, target.getLocation());
+                                target.sendMessage(Chat.c(Bigeculty.messageConfig.getString("vex-target-message").replace("%prefix%", Bigeculty.prefix).replace("%player%", p.getName())));
+                                p.sendMessage(Chat.c(Bigeculty.messageConfig.getString("vex-player-message").replace("%prefix%", Bigeculty.prefix).replace("%player%", target.getName())));
+                            } else if (args[1].equalsIgnoreCase("launch")) {
+                                WaterLaunch.launch(target);
+                                target.sendMessage(Chat.c(Bigeculty.messageConfig.getString("launch-target-message").replace("%prefix%", Bigeculty.prefix).replace("%player%", p.getName())));
+                                p.sendMessage(Chat.c(Bigeculty.messageConfig.getString("launch-player-message").replace("%prefix%", Bigeculty.prefix).replace("%player%", target.getName())));
+                            } else {
+                                p.sendMessage(Chat.c(Bigeculty.messageConfig.getString("invalid-event").replace("%prefix%", Bigeculty.prefix)));
+                            }
                         } else {
-                            p.sendMessage(Chat.c(Bigeculty.messageConfig.getString("invalid-event").replace("%prefix%", Bigeculty.prefix)));
+                            p.sendMessage(Chat.c(Bigeculty.messageConfig.getString("player-not-found").replace("%prefix%", Bigeculty.prefix).replace("%player%", args[2])));
                         }
+
                     } else {
-                        p.sendMessage(Chat.c(Bigeculty.messageConfig.getString("player-not-found").replace("%prefix%", Bigeculty.prefix).replace("%player%", args[2])));
+                        String message = Chat.c(Bigeculty.messageConfig.getString("function-unavailable")
+                                .replace("%prefix%", Bigeculty.prefix)
+                                .replace("%player%", Bigeculty.prefix));
+                        p.sendMessage(message);
                     }
 
                 } else {
@@ -136,11 +169,18 @@ public class MainCmd implements TabExecutor {
 
         if (args.length == 1) {
             List<String> suggestions = new ArrayList<String>(arguments);
+            if (!Bigeculty.isRunning()) {
+                suggestions.removeAll(suggestions);
+                suggestions.add("enable");
+            }
             return ArgumentTabCompleter.getCompletions(suggestions, args[0]);
         }
         if (args.length == 2) {
             if (args[0].equalsIgnoreCase("manualevent")) {
                 List<String> suggestions = new ArrayList<String>(events);
+                if (!Bigeculty.isRunning()) {
+                    suggestions.removeAll(suggestions);
+                }
                 return ArgumentTabCompleter.getCompletions(suggestions, args[1]);
             } else {
                 List<String> suggestions = new ArrayList<String>();
@@ -152,6 +192,9 @@ public class MainCmd implements TabExecutor {
                 List<String> suggestions = new ArrayList<String>();
                 for (Player onlinePlayer : Bukkit.getServer().getOnlinePlayers()) {
                     suggestions.add(onlinePlayer.getName());
+                }
+                if (!Bigeculty.isRunning()) {
+                    suggestions.removeAll(suggestions);
                 }
                 return ArgumentTabCompleter.getCompletions(suggestions, args[2]);
             }
