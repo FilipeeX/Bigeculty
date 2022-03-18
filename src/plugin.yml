@@ -6,6 +6,44 @@ author: FilipeeX
 
 commands:
   bigeculty:
-    usage: /<command>
-    description: Main Command of Bigeculty Plugin
+    usage: /<command> <enable/disable/changes/help/manualevent/reload> [player]
+    description: Main command for Bigeculty. You can enable/disable bigeculty, see help, changes or execute manual event.
     aliases: [b, bc, bd, bg, bgculty, bculty, bgdiffimpossible, bgdiff]
+
+permissions:
+  bigeculty.*:
+    default: op
+    description: Gives full access to bigeculty plugin.
+  bigeculty.enable:
+    default: false
+    description: Allows enabling bigeculty.
+  bigeculty.disable:
+    default: false
+    description: Allows disabling bigeculty.
+  bigeculty.reload:
+    default: false
+    description: Allows reloading the bigeculty plugin.
+  bigeculty.help:
+    default: true
+    description: Allows displaying the help message.
+  bigeculty.changes:
+    default: true
+    description: Allows displaying change list.
+  bigeculty.manualevent:
+    default: false
+    description: Allows executing manual events, can be specified with other permissions.
+  bigeculty.manualevent.others:
+    default: false
+    description: Allows executing manual events on other players, for this to work player must also have permission bigeculty.manualevent.
+  bigeculty.manualevent.*:
+    default: false
+    description: Allows executing every single manual event.
+  bigeculty.manualevent.explosion:
+    default: false
+    description: Allows executing manual explosion event.
+  bigeculty.manualevent.vex:
+    default: false
+    description: Allows executing manual vex event.
+  bigeculty.manualevent.launch:
+    default: false
+    description: Allows executing manual launch event.
